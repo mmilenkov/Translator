@@ -1,0 +1,15 @@
+CREATE TABLE history(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    fromLanguage TEXT NOT NULL,
+    fromText TEXT NOT NULL,
+    toLanguage TEXT NOT NULL,
+    toText TEXT NOT NULL,
+    timestamp INTEGER NOT NULL
+);
+
+getHistory:
+    SELECT * FROM history ORDER BY timestamp DESC;
+
+insertHistory:
+    INSERT OR REPLACE INTO history(id,fromLanguage,fromText,toLanguage,toText,timestamp)
+    VALUES (?,?,?,?,?,?);
