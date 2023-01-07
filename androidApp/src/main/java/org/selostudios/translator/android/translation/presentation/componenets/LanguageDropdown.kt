@@ -27,7 +27,9 @@ fun LanguageDropdown(
     onSelectLanguage: (UiLanguage) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier) {
+    Box(
+        modifier = modifier
+    ) {
         DropdownMenu(
             expanded = isOpen,
             onDismissRequest = onDismiss
@@ -42,32 +44,34 @@ fun LanguageDropdown(
                 )
             }
         }
-        Row(
+        Column(
             modifier = Modifier
                 .clickable(onClick = onClick)
                 .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             AsyncImage(
                 model = language.res,
                 contentDescription = language.language.languageName,
                 modifier = Modifier.size(30.dp)
             )
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(
-                text = language.language.languageName,
-                color= LightBlue
-            )
-            Icon(
-                imageVector = if (isOpen) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown,
-                contentDescription = if (isOpen) {
-                    stringResource(id = R.string.close)
-                } else {
-                    stringResource(id = R.string.open)
-                },
-                tint = LightBlue,
-                modifier = Modifier.size(30.dp)
-            )
+            Spacer(modifier = Modifier.height(2.dp))
+            Row (verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = language.language.languageName,
+                    color= LightBlue
+                )
+                Icon(
+                    imageVector = if (isOpen) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown,
+                    contentDescription = if (isOpen) {
+                        stringResource(id = R.string.close)
+                    } else {
+                        stringResource(id = R.string.open)
+                    },
+                    tint = LightBlue,
+                    modifier = Modifier.size(30.dp)
+                )
+            }
         }
     }
 }
